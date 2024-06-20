@@ -4,6 +4,8 @@
 
 This project sets up an ESP32 as a wireless serial monitor. It creates a Wi-Fi access point, serves a web page from SPIFFS, handles DNS requests for a captive portal, and uses WebSockets to display real-time logs on the web page.
 
+![Alt text](image-1.png)
+
 ## Resources
 
 These Resources were used in this porject's creation.
@@ -96,6 +98,7 @@ WIRELESS-MONITOR-PROJECT/
 2. **Open Web Browser**:
 
     - The captive portal will popup with a link to directly view the serial monitor which will open `http://serialmonitor.local`
+    - ![Alt text](image.png)
     - to view in your browser open this http://serialmonitor.local.
 
 3. **View Serial Output**:
@@ -116,7 +119,3 @@ WIRELESS-MONITOR-PROJECT/
 ## License
 
 This project is licensed under the MIT License.
-
-```
-
-```
