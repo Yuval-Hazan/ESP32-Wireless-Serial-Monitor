@@ -50,7 +50,7 @@ void CaptivePortalHandler::handleRequest(AsyncWebServerRequest *request) {
 
 // ServerManager Class Implementation
 ServerManager::ServerManager(const char* ssid, const char* password)
-    : ssid(ssid), password(password), wirelessMonitor(webSocket, logBuffer) {}
+    : ssid(ssid), password(password) {}
 
 void ServerManager::setup() {
     Serial.begin(9600);

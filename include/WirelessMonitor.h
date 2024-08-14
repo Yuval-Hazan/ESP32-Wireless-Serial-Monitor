@@ -14,7 +14,7 @@ extern const char* ssid;
 extern const char* password;
 extern const byte DNS_PORT;
 
-// Global Variables
+// // Global Variables
 extern DNSServer dnsServer;
 extern AsyncWebServer server;
 extern WebSocketsServer webSocket;
@@ -51,11 +51,11 @@ public:
     void setup();
     void loop();
 
+
 private:
     const char* ssid;
     const char* password;
-    WirelessMonitor wirelessMonitor;
-
+    
     void onWebSocketEvent(uint8_t num, WStype_t type, uint8_t *payload, size_t length);
     void initWiFi();
     void setupServer();
