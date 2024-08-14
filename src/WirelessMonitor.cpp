@@ -16,11 +16,17 @@ String logBuffer = ""; // Global string to store logs
 // WirelessMonitor Class Implementation
 WirelessMonitor::WirelessMonitor(WebSocketsServer &ws, String &logBufferRef)
     : webSocket(ws), logBuffer(logBufferRef) {}
-
+ServerManager sm("ESP32-AP", "12345678");
 void WirelessMonitor::print(const String &message) {
     Serial.println(message);             // Print to Serial Monitor
     logBuffer += message + "<br>";       // Append to log buffer
     webSocket.broadcastTXT(message.c_str());     // Broadcast via WebSocket
+}
+void WirelessMonitor::setup(){
+    sm.setup();
+}
+void WirelessMonitor::loop(){
+    sm.loop();
 }
 
 // CaptivePortalHandler Class Implementation

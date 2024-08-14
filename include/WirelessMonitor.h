@@ -25,6 +25,8 @@ class WirelessMonitor {
 public:
     WirelessMonitor(WebSocketsServer &ws, String &logBufferRef);
     void print(const String &message);
+    void setup();
+    void loop();
 
 private:
     WebSocketsServer &webSocket;
