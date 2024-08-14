@@ -64,30 +64,5 @@ private:
 };
 
 
-// class CaptivePortalHandler : public AsyncWebHandler {
-// public:
-//     CaptivePortalHandler() {}
-//     virtual ~CaptivePortalHandler() {}
-
-//     bool canHandle(AsyncWebServerRequest *request) {
-//         return true; // Handle all requests
-//     }
-
-//     void handleRequest(AsyncWebServerRequest *request) {
-//         request->send(200, "text/html", "<html><body><h1>Connect to the serial monitor <a href=\"http://serialmonitor.local\">here</a>.</h1></body></html>");
-//     }
-// };
-
-
-// // Function Declarations
-// void onWebSocketEvent(uint8_t num, WStype_t type, uint8_t *payload, size_t length);
-// void initWiFi();
-// void setupServer();
-// void initDNS();
-// void initmDNS();
-// void wifiPrint(String message);
-
-// void setup();
-// void loop();
 
 #endif // WIRELESS_MONITOR_H
