@@ -1,17 +1,35 @@
+/**
+   (`\ .-') /`       _  .-')     ('-.              ('-.    .-')     .-')           .-')      ('-.  _  .-')             ('-.               
+   `.( OO ),'      ( \( -O )  _(  OO)           _(  OO)  ( OO ).  ( OO ).        ( OO ).  _(  OO)( \( -O )           ( OO ).-.           
+,--./  .--.  ,-.-') ,------. (,------.,--.     (,------.(_)---\_)(_)---\_)      (_)---\_)(,------.,------.  ,-.-')   / . --. / ,--.      
+|      |  |  |  |OO)|   /`. ' |  .---'|  |.-')  |  .---'/    _ | /    _ |       /    _ |  |  .---'|   /`. ' |  |OO)  | \-.  \  |  |.-')  
+|  |   |  |, |  |  \|  /  | | |  |    |  | OO ) |  |    \  :` `. \  :` `.       \  :` `.  |  |    |  /  | | |  |  \.-'-'  |  | |  | OO ) 
+|  |.'.|  |_)|  |(_/|  |_.' |(|  '--. |  |`-' |(|  '--.  '..`''.) '..`''.)       '..`''.)(|  '--. |  |_.' | |  |(_/ \| |_.'  | |  |`-' | 
+|         | ,|  |_.'|  .  '.' |  .--'(|  '---.' |  .--' .-._)   \.-._)   \      .-._)   \ |  .--' |  .  '.',|  |_.'  |  .-.  |(|  '---.' 
+|   ,'.   |(_|  |   |  |\  \  |  `---.|      |  |  `---.\       /\       /      \       / |  `---.|  |\  \(_|  |     |  | |  | |      |  
+'--'   '--'  `--'   `--' '--' `------'`------'  `------' `-----'  `-----'        `-----'  `------'`--' '--' `--'     `--' `--' `------'  
+*/
+
 // Headers
 #include "WirelessMonitor.h"
 #include "EmbeddedFiles.h"
 
+
 // Constants
+//the adderess serial monitor is available at http://serialmonitor.local --  can be changed in 'embeddedfiles.cpp'
 const char* ssid = "ESP32-AP";
 const char* password = "12345678";
 const byte DNS_PORT = 53;
+const int ws_port = 81;
+const int server_port = 80;
+const int serial_port = 9600;
 
 
+// Wireless Monitor Class Implementation
 WirelessMonitor::WirelessMonitor() :
-webSocket(81), 
+webSocket(ws_port), 
 logBuffer(""),
-server(80)
+server(server_port)
 {}
 
 
@@ -21,7 +39,7 @@ void WirelessMonitor::print(const String &message) {
     webSocket.broadcastTXT(message.c_str());   
 }
 void WirelessMonitor::setup(){
-    Serial.begin(9600);
+    Serial.begin(serial_port);
     initWiFi();
     setupServer();
     initDNS();
@@ -60,7 +78,7 @@ void WirelessMonitor::setupServer() {
     server.addHandler(new CaptivePortalHandler()).setFilter(ON_AP_FILTER);
 
     server.onNotFound([&](AsyncWebServerRequest *request){
-        // request->send(200, "text/html", "<html><body><h1>Connect to the serial monitor <a href=\"http://serialmonitor.local\">here</a>.</h1></body></html>");
+        
         request->send(200, "text/html", captive_html);
     });
 }
@@ -79,11 +97,11 @@ void WirelessMonitor::initmDNS() {
 
 // CaptivePortalHandler Class Implementation
 CaptivePortalHandler::CaptivePortalHandler() {
-    // Constructor implementation
+
 }
 
 CaptivePortalHandler::~CaptivePortalHandler() {
-    // Destructor implementation
+
 }
 
 bool CaptivePortalHandler::canHandle(AsyncWebServerRequest *request) {

@@ -26,8 +26,6 @@ public:
     void loop();
 
 private:
-    // WebSocketsServer &webSocket;
-    // String &logBuffer;
     DNSServer dnsServer;
     AsyncWebServer server;
     WebSocketsServer webSocket;
