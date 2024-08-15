@@ -91,17 +91,6 @@ These Resources were used in this porject's creation.
 3. **View Serial Output**:
     - The web page will display real-time logs from the ESP32.
 
-## File Descriptions
-
--   **`include/`**: Contains header files for project-wide declarations.
--   **`src/`**: Contains the main source files.
-    -   `main.cpp`: Initializes the ESP32, sets up Wi-Fi, web server, DNS, and WebSockets.
-    -   `CaptivePortalHandler.cpp`: Handles HTTP requests for the captive portal.
--   **`data/`**: Contains static web files to be served by SPIFFS.
-    -   `index.html`: The main web page.
-    -   `script.js`: JavaScript for handling WebSocket communication.
-    -   `style.css`: CSS for styling the web page.
--   **`platformio.ini`**: PlatformIO configuration file.
 
 ## License
 
