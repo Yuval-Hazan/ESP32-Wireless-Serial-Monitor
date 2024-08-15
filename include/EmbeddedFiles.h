@@ -8,6 +8,7 @@
 extern const char index_html[] PROGMEM;
 extern const char style_css[] PROGMEM;
 extern const char script_js[] PROGMEM;
+extern const char captive_html[] PROGMEM;
 
 // Functions to serve the embedded content
 void serveIndexHtml(AsyncWebServerRequest *request);

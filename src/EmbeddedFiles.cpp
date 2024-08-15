@@ -71,15 +71,25 @@ h2 {
 }
 )rawliteral";
 
+
 // Define the JavaScript content
 const char script_js[] PROGMEM = R"rawliteral(
 var gateway = `ws://${window.location.hostname}:81/`;
 var websocket;
+var userScrolled = false;
 
 window.addEventListener("load", onLoad);
 
 function onLoad(event) {
     initWebSocket();
+    var serialDiv = document.getElementById("serial");
+    serialDiv.addEventListener('scroll', function() {
+        if (serialDiv.scrollTop + serialDiv.clientHeight < serialDiv.scrollHeight) {
+            userScrolled = true;
+        } else {
+            userScrolled = false;
+        }
+    });
 }
 
 function initWebSocket() {
@@ -102,11 +112,58 @@ function onMessage(event) {
     console.log(event.data);
     var serialDiv = document.getElementById("serial");
     serialDiv.innerHTML += event.data + "<br>";
-    serialDiv.scrollTop = serialDiv.scrollHeight; // Auto-scroll to the bottom
+    if (!userScrolled) {
+        serialDiv.scrollTop = serialDiv.scrollHeight; // Auto-scroll to the bottom
+    }
 }
 
 )rawliteral";
-
+const char captive_html[] PROGMEM = R"rawliteral(
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serial Monitor Connection</title>
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #1e1e1e;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #bb86fc;
+        }
+        a {
+            color: #03dac6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Connect to the Wireless Serial Monitor</h1>
+        <p><a href="http://serialmonitor.local"><u>Click here</u></a> to access the serial monitor.</p>
+    </div>
+</body>
+</html>
+)rawliteral";
 // Function to serve the HTML content
 void serveIndexHtml(AsyncWebServerRequest *request) {
     request->send_P(200, "text/html", index_html);
@@ -121,3 +178,4 @@ void serveStyleCss(AsyncWebServerRequest *request) {
 void serveScriptJs(AsyncWebServerRequest *request) {
     request->send_P(200, "application/javascript", script_js);
 }
+

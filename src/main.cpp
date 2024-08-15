@@ -1,5 +1,5 @@
 #include <WirelessMonitor.h>
-WirelessMonitor wm(webSocket, logBuffer);
+WirelessMonitor wm;
 
 void setup() {
     wm.setup();
@@ -8,6 +8,6 @@ void setup() {
 
 void loop() {
     wm.loop();
-    wm.print("Hello, World!");
+    wm.print("Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!Hello, World!");
   // put your main code here, to run repeatedly:
 }
