@@ -15,4 +15,4 @@ void serveIndexHtml(AsyncWebServerRequest *request);
 void serveStyleCss(AsyncWebServerRequest *request);
 void serveScriptJs(AsyncWebServerRequest *request);
 
-#endif // EMBEDDED_FILES_H
+#endif  // EMBEDDED_FILES_H

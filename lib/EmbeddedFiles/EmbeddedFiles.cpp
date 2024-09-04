@@ -71,7 +71,6 @@ h2 {
 }
 )rawliteral";
 
-
 // Define the JavaScript content
 const char script_js[] PROGMEM = R"rawliteral(
 var gateway = `ws://${window.location.hostname}:81/`;
@@ -166,16 +165,15 @@ const char captive_html[] PROGMEM = R"rawliteral(
 )rawliteral";
 // Function to serve the HTML content
 void serveIndexHtml(AsyncWebServerRequest *request) {
-    request->send_P(200, "text/html", index_html);
+  request->send_P(200, "text/html", index_html);
 }
 
 // Function to serve the CSS content
 void serveStyleCss(AsyncWebServerRequest *request) {
-    request->send_P(200, "text/css", style_css);
+  request->send_P(200, "text/css", style_css);
 }
 
 // Function to serve the JS content
 void serveScriptJs(AsyncWebServerRequest *request) {
-    request->send_P(200, "application/javascript", script_js);
+  request->send_P(200, "application/javascript", script_js);
 }
-
