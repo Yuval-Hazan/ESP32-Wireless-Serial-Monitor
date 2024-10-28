@@ -6,6 +6,13 @@ This project sets up an ESP32 as a wireless serial monitor. It creates a Wi-Fi a
 
 ![Alt text](docs/Monitor.png)
 
+## Features
+
+- **Captive Portal Access**: Automatically redirects connected devices to the serial monitor page.
+- **Web-Based Serial Monitor**: View real-time serial output in a browser.
+- **Modular Codebase**: Includes separate modules for wireless monitoring and embedded functionalities.
+- **PlatformIO Support**: Easily configurable and adaptable for different ESP32 projects.
+
 ## Resources
 
 These Resources were used in this porject's creation.
@@ -30,25 +37,33 @@ These Resources were used in this porject's creation.
 
 ```plaintext
 ├── docs
-│   ├── Captive.png           # Screenshot of the captive portal page
-│   └── Monitor.png           # Screenshot of the serial monitor page
-├── include
-│   ├── EmbeddedFiles.h       # Header file containing embedded HTML, CSS, and JS files
-│   └── WirelessMonitor.h     # Header file defining the WirelessMonitor class and its methods
+│   ├── Captive.png              # Screenshot of the captive portal
+│   └── Monitor.png              # Screenshot of the wireless serial monitor
+├── lib
+│   ├── EmbeddedFiles
+│   │   ├── EmbeddedFiles.cpp
+│   │   └── EmbeddedFiles.h
+│   └── WirelessMonitor
+│       ├── WirelessMonitor.cpp
+│       └── WirelessMonitor.h
 ├── src
-│   ├── EmbeddedFiles.cpp     # Source file with the implementation for serving embedded files
-│   ├── main.cpp              # Main entry point of the program
-│   └── WirelessMonitor.cpp   # Implementation of the WirelessMonitor class
-├── .gitignore                # Git ignore file for excluding certain files and directories
-├── platformio.ini            # PlatformIO configuration file
-└── README.md                 # Project README file
+│   └── main.cpp                 # Main entry point for the ESP32 system
+├── platformio.ini               # PlatformIO project configuration file
+└── README.md                    # Project documentation
+
 
 ```
+## Requirements
 
-## Prerequisites
+- **Hardware**:
+  - ESP32 Development Board with Wi-Fi capability
 
--   [PlatformIO](https://platformio.org/) installed in your IDE (e.g., VSCode).
--   ESP32 development board.
+- **Software**:
+  - PlatformIO (recommended) or Arduino IDE
+  - ESP-IDF or ESP32 Core for Arduino
+  - Libraries:
+    - `AsyncTCP`
+    - `ESPAsyncWebServer`
 
 ## Setup and Installation
 
